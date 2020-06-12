@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /** 
@@ -12,7 +14,18 @@ public class App {
      * @param args String[] 
      */
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    	
+    	File text = new File("../entrada.txt");
+
+        //Creating Scanner instnace to read File in Java
+        Scanner sc;
+		try {
+			sc = new Scanner(text);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        //Scanner sc = new Scanner(System.in);
         int seed = sc.nextInt();
         int numServers = sc.nextInt();
         int numCustomer = sc.nextInt();
@@ -20,9 +33,7 @@ public class App {
         double svcRate = sc.nextDouble();
         sc.close();
         double restRate = 1.0;
+        System.out.println("Yesaaaaa");
 
-        EventManager eventManager = new EventManager(numServers, numCustomer,
-            seed,arrivalRate,svcRate,restRate);
-        eventManager.doService();
     }
 }
