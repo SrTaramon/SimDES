@@ -9,6 +9,16 @@ public class Fan {
      * CustomerID  that allows distinguishing between 2 customers.
      */
     private final int fanID;
+    
+    /**
+     * CustomerID  that allows distinguishing between 2 customers.
+     */
+    private static boolean Billet;
+    
+    /**
+     * CustomerID  that allows distinguishing between 2 customers.
+     */
+    private static boolean VIP;
 
     /**
      * Time when the customer first arrives.
@@ -21,7 +31,7 @@ public class Fan {
      */
 
     public Fan(double time) {
-        this.fanID = counter;
+		this.fanID = counter;
         this.time = time;
         counter++;
     }
@@ -33,5 +43,13 @@ public class Fan {
     public double getTime() {
         return this.time;
     }
+
+	public boolean isBillet() {
+		return Billet;
+	}
+
+	public boolean isVIP() {
+		return VIP;
+	}
 
 }

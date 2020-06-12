@@ -3,8 +3,9 @@ import java.util.Random;
 import acm.util.RandomGenerator;
 
 public class ArrivalVestibolSortida extends Event {
-
-    /**
+	
+	
+	/**
      * Creates an ArrivalEvent.
      * 
      * @param customer customer that the event is involving.
@@ -29,51 +30,73 @@ public class ArrivalVestibolSortida extends Event {
      */
     public Event getNextEvent(Server[] servers, Random gen) {
         Server freeServer = getFreeServer(servers);
-        if (freeServer == null) {
-            return createLeaveEvent();
-        } else if (freeServer.canTakeServedEvent()) {
-        	TorniquetSortida newEvent = createServedEvent(freeServer);
-            freeServer.setServedEvent(newEvent);
-            return newEvent;
-        } else if (freeServer.canTakeWaitEvent()) {
-            WaitEvent newEvent = createWaitEvent(freeServer);
-            freeServer.setWaitEvent(newEvent);
-            return newEvent;
+    	
+        // IMPORTANT Fer que el server tingui una fucniao on mira si la cua del vips pot passar or not. 
+        
+        
+        if (this.getFan().isVIP() == true) { // Fan que s VIP, Llavors passa per la cua vip
+        	WaitEventVipQueue WaitVipQueue = createWaitVipQueue(freeServer);
+            return WaitVipQueue;
+          
         } else {
-            System.out.println("Bug in ArrivalEvents");
-            return null;
+        	
+        	WaitEventQueue WaitVipQueue = createWaitQueue(freeServer);
+            return WaitVipQueue;
         }
-        return null;
+
+        
+//        else if (freeServer.canTakeServedEvent()) {
+//        	TorniquetSortida newEvent = createServedEvent(freeServer);
+//            freeServer.setServedEvent(newEvent);
+//            return newEvent;
+//        } else if (freeServer.canTakeWaitEvent()) {
+//            WaitEvent newEvent = createWaitEvent(freeServer);
+//            freeServer.setWaitEvent(newEvent);
+//            return newEvent;
+//        } else {
+//            System.out.println("Bug in ArrivalEvents");
+//            return null;
+//        }
     }
 
-    /**
-     * Creates a LeaveEvent not bounded to any server.
-     * 
-     * @return LeaveEvent
-     */
-    public LeaveEvent createLeaveEvent() {
-        return new LeaveEvent(this.getCustomer(), this.getTime());
-    }
+    public WaitEventVipQueue createWaitVipQueue(Server freeServer) {
+		// TODO Auto-generated method stub
+		return new WaitEventVipQueue(this.getFan(), this.getTime());
+	}
+    
+    public WaitEventQueue createWaitQueue(Server freeServer) {
+		// TODO Auto-generated method stub
+		return new WaitEventQueue(this.getFan(), this.getTime());
+	}
 
-    /**
-     * Creates a ServedEvent bounded to an empty server.
-     * 
-     * @param freeServer the server that is empty.
-     * @return ServedEvent.
-     */
-    public ServedEvent createServedEvent(Server freeServer) {
-        return new ServedEvent(this.getCustomer(), this.getTime(), freeServer);
-    }
-
-    /**
-     * Creates a WaitEvent bounded to a partially occupied server.
-     * 
-     * @param freeServer the server that is partially occupied.
-     * @return WaitEvent.
-     */
-    public WaitEvent createWaitEvent(Server freeServer) {
-        return new WaitEvent(this.getCustomer(), this.getTime(), freeServer);
-    }
+//	/**
+//     * Creates a LeaveEvent not bounded to any server.
+//     * 
+//     * @return LeaveEvent
+//     */
+//    public LeaveEvent createLeaveEvent() {
+//        return new LeaveEvent(this.getCustomer(), this.getTime());
+//    }
+//
+//    /**
+//     * Creates a ServedEvent bounded to an empty server.
+//     * 
+//     * @param freeServer the server that is empty.
+//     * @return ServedEvent.
+//     */
+//    public ServedEvent createServedEvent(Server freeServer) {
+//        return new ServedEvent(this.getCustomer(), this.getTime(), freeServer);
+//    }
+//
+//    /**
+//     * Creates a WaitEvent bounded to a partially occupied server.
+//     * 
+//     * @param freeServer the server that is partially occupied.
+//     * @return WaitEvent.
+//     */
+//    public WaitEvent createWaitEvent(Server freeServer) {
+//        return new WaitEvent(this.getCustomer(), this.getTime(), freeServer);
+//    }
 
     /**
      * Modifies information in statistics if required.
