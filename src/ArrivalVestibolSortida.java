@@ -33,13 +33,11 @@ public class ArrivalVestibolSortida extends Event {
     	
         // IMPORTANT Fer que el server tingui una fucniao on mira si la cua del vips pot passar or not. 
         
-        
         if (this.getFan().isVIP() == true) { // Fan que s VIP, Llavors passa per la cua vip
         	WaitEventVipQueue WaitVipQueue = createWaitVipQueue(freeServer);
             return WaitVipQueue;
           
         } else {
-        	
         	WaitEventQueue WaitVipQueue = createWaitQueue(freeServer);
             return WaitVipQueue;
         }
