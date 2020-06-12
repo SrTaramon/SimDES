@@ -1,18 +1,11 @@
 import java.util.Random;
 
-import acm.util.RandomGenerator;
+public class TorniquetSortida extends Event{
 
-public class ArrivalVestibolSortida extends Event {
-
-    /**
-     * Creates an ArrivalEvent.
-     * 
-     * @param customer customer that the event is involving.
-     * @param time     time at which event is created.
-     */
-    public ArrivalVestibolSortida(Fan fan, double time) {
-        super(fan, time);
-    }
+	public TorniquetSortida(Fan fan, double time) {
+		super(fan, time);
+		// TODO Auto-generated constructor stub
+	}
 
     /**
      * Creates the next event based on the availability of servers. The available
@@ -32,7 +25,7 @@ public class ArrivalVestibolSortida extends Event {
         if (freeServer == null) {
             return createLeaveEvent();
         } else if (freeServer.canTakeServedEvent()) {
-            ServedEvent newEvent = createServedEvent(freeServer);
+        	TorniquetSortida newEvent = createServedEvent(freeServer);
             freeServer.setServedEvent(newEvent);
             return newEvent;
         } else if (freeServer.canTakeWaitEvent()) {
@@ -116,5 +109,5 @@ public class ArrivalVestibolSortida extends Event {
     public String toString() {
         return String.format("%.3f", this.getTime()) + ' ' + this.getFanID() + " arrives";
     }
-
+	
 }

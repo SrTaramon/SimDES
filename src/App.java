@@ -1,7 +1,8 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-
+import java.lang.Object;
+import java.util.Random;
 /** 
  * Main class for testing purposes.
  */
@@ -15,10 +16,10 @@ public class App {
      */
     public static void main(String[] args) {
     	
-    	File text = new File("../entrada.txt");
+    	File text = new File("entrada.txt");
 
         //Creating Scanner instnace to read File in Java
-        Scanner sc;
+        Scanner sc = null;
 		try {
 			sc = new Scanner(text);
 		} catch (FileNotFoundException e) {
@@ -29,11 +30,20 @@ public class App {
         int seed = sc.nextInt();
         int numServers = sc.nextInt();
         int numCustomer = sc.nextInt();
-        double arrivalRate = sc.nextDouble();
+        int arrivalRate = sc.nextInt();
         double svcRate = sc.nextDouble();
         sc.close();
         double restRate = 1.0;
-        System.out.println("Yesaaaaa");
-
+        
+        System.out.println("Yesaaaaa " + seed + " " + numServers + " " + numCustomer + " " + arrivalRate + " " + svcRate);
+        
+        Random rnd = new Random();
+        rnd.setSeed(seed);
+        double x = rnd.nextFloat();
+        System.out.println(x);
+        System.out.println(rnd.nextFloat() + " " + rnd.nextFloat() + " " + rnd.nextFloat() + " " + rnd.nextFloat() + " " + rnd.nextFloat() + " " + rnd.nextFloat() + " " + rnd.nextFloat());
+        Random rnd2 = new Random(1);
+        
+        System.out.println(rnd2.nextInt(arrivalRate) + " " + rnd2.nextInt(arrivalRate) + " " + rnd2.nextInt(arrivalRate) + " " + rnd2.nextInt(arrivalRate));
     }
 }

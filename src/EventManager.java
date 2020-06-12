@@ -1,5 +1,7 @@
 import java.util.PriorityQueue;
 import acm.util.RandomGenerator;
+import java.lang.Object;
+import java.util.Random;
 
 /**
  * EventManager class that handles the sequence of Event executions.
@@ -28,7 +30,7 @@ public class EventManager {
      * RandomGenerator object to randomise arrival time as well as
      * service time, which is the time to convert ServedEvent to DoneEvent.
      */
-    RandomGenerator gen;
+    Random gen;
 
 
     /**
@@ -43,18 +45,24 @@ public class EventManager {
      * @param restRate rest rate, rho in RandomGenerator constructor
      */
     public EventManager(int numServers, int numCustomer,
-        int seed, double arrivalRate, double svcRate, double restRate) {
+        long seed, int arrivalRate, double svcRate, double restRate) {
         this.events = new PriorityQueue<>(new EventComparator());
-        this.gen = new RandomGenerator(seed, arrivalRate,svcRate,restRate);
+        
+        Random rnd = new Random();
+        rnd.setSeed(seed);
+        this.gen = rnd;
+        
         double time = 0;
         Fan fan = new Fan(time);
-        ArrivalVestibolSortida tempEvent = new ArrivalVestibolSortida(customer,time);
+        
+        ArrivalVestibolSortida tempEvent = new ArrivalVestibolSortida(fan,time);
         events.add(tempEvent);
+        
         for (int i = 0;i < numCustomer - 1;i++) {
-            double x = gen.genInterArrivalTime();
+            int x = this.gen.nextInt(arrivalRate);
             time += x;
             fan = new Fan(time);
-            tempEvent = new ArrivalVestibolSortida(customer,time);
+            tempEvent = new ArrivalVestibolSortida(fan,time);
             events.add(tempEvent);
         }
         this.servers = new Server [numServers];

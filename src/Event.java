@@ -1,3 +1,5 @@
+import java.util.Random;
+
 import acm.util.RandomGenerator;
 
 public abstract class Event {
@@ -26,7 +28,7 @@ public abstract class Event {
     /** 
      * Creates the next event of parent type based on its original type.
      */
-    public abstract Event getNextEvent(Server [] servers,RandomGenerator gen);
+    public abstract Event getNextEvent(Server [] servers,Random gen);
 
     /** Modifies information in statistics if required.
      */
