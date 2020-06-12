@@ -1,33 +1,13 @@
 import java.util.Random;
 
-import acm.util.RandomGenerator;
+public class ValidarBillet extends Event{
 
-public class ArrivalVestibolSortida extends Event {
-
-    /**
-     * Creates an ArrivalEvent.
-     * 
-     * @param customer customer that the event is involving.
-     * @param time     time at which event is created.
-     */
-    public ArrivalVestibolSortida(Fan fan, double time) {
-        super(fan, time);
-    }
-
-    /**
-     * Creates the next event based on the availability of servers. The available
-     * server will be updated to hold a field of the event and be involved in the
-     * creation of new event.
-     * 
-     * @param servers Array of servers to be checked
-     * @param gen     RandomGenerator, not used in this case.
-     * @return parent class Event, which could be in the form of LeaveEvent, if
-     *         there are no available servers. ServedEvent, if there exists an
-     *         available server that is completely free. WaitEvent, if there exists
-     *         available server and there are no empty servers. null, which won't be
-     *         reached as it's a Debugging statement.
-     */
-    public Event getNextEvent(Server[] servers, Random gen) {
+	public ValidarBillet(Fan fan, double time) {
+		super(fan, time);
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Event getNextEvent(Server[] servers, Random gen) {
         Server freeServer = getFreeServer(servers);
         if (freeServer == null) {
             return createLeaveEvent();
@@ -116,5 +96,6 @@ public class ArrivalVestibolSortida extends Event {
     public String toString() {
         return String.format("%.3f", this.getTime()) + ' ' + this.getFanID() + " arrives";
     }
+
 
 }
