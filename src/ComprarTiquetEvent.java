@@ -8,7 +8,7 @@ public class ComprarTiquetEvent extends Event {
 	}
 
 	@Override
-	public Event getNextEvent(ServerTorniquet[] servers, Random gen, EspecialServerTorniquet[] especial_servers) {
+	public Event getNextEvent(ServerTorniquet[] servers, Random gen, ServerTorniquetEspecial[] especial_servers) {
 		// TODO Auto-generated method stub
 		int x = gen.nextInt(10) + 5;
 		this.getFan().setBillet(true);

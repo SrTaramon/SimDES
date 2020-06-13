@@ -14,7 +14,7 @@ public class EventManager {
      */
 	ServerTorniquet [] servers;
     
-    EspecialServerTorniquet[] special_servers;
+    ServerTorniquetEspecial[] special_servers;
 
     /**
      * PriorityQueue of events to be cleared by the end of the simulation.
@@ -71,9 +71,9 @@ public class EventManager {
         for (int i = 0;i < numServers;i++) {
             this.servers[i] = new ServerTorniquet();
         }
-        this.special_servers = new EspecialServerTorniquet [numEspecialServers];
+        this.special_servers = new ServerTorniquetEspecial [numEspecialServers];
         for (int i = 0;i < numEspecialServers;i++) {
-            this.special_servers[i] = new EspecialServerTorniquet();
+            this.special_servers[i] = new ServerTorniquetEspecial();
         }
     }
 

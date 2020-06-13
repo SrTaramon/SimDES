@@ -28,7 +28,7 @@ public class ArrivalVestibolSortida extends Event {
      *         available server and there are no empty servers. null, which won't be
      *         reached as it's a Debugging statement.
      */
-    public Event getNextEvent(ServerTorniquet[] servers, Random gen, EspecialServerTorniquet[] especial_servers) {
+    public Event getNextEvent(ServerTorniquet[] servers, Random gen, ServerTorniquetEspecial[] especial_servers) {
     	
         
         if (this.getFan().isHaVistPartit()) { //COndicio perque el fan sorti del sistema
@@ -37,7 +37,7 @@ public class ArrivalVestibolSortida extends Event {
         } else if (this.getFan().isEspecial()) { // MIra si el clinet Es especial o no
         	
         	// Cas on el client es especial i necessita passar per la cua especial
-        	EspecialServerTorniquet freeEspecialServer = getFreeEspecialServer(especial_servers);
+        	ServerTorniquetEspecial freeEspecialServer = getFreeEspecialServer(especial_servers);
         	if (freeEspecialServer.isAvailable()) {
         		
         		//No Hi ha ningu a la cua 
@@ -81,12 +81,12 @@ public class ArrivalVestibolSortida extends Event {
 		return new LeaveEvent(this.getFan(), this.getTime());
 	}
     
-    private ServedTorniquetEspecialEvent createServedTorniquetEspecialEvent(EspecialServerTorniquet server) {
+    private ServedTorniquetEspecialEvent createServedTorniquetEspecialEvent(ServerTorniquetEspecial server) {
 		// TODO Auto-generated method stub
 		return new ServedTorniquetEspecialEvent(this.getFan(), this.getTime(), server);
 	}
     
-    private WaitQueueTorniquetEspecialEvent createWaitQueueTorniquetEspecialEvent(EspecialServerTorniquet server) {
+    private WaitQueueTorniquetEspecialEvent createWaitQueueTorniquetEspecialEvent(ServerTorniquetEspecial server) {
 		// TODO Auto-generated method stub
 		return new WaitQueueTorniquetEspecialEvent(this.getFan(), this.getTime(), server);
 	}
@@ -119,7 +119,7 @@ public class ArrivalVestibolSortida extends Event {
      *         otherwise.
      */
     
-    public EspecialServerTorniquet getFreeEspecialServer(EspecialServerTorniquet[] servers) {
+    public ServerTorniquetEspecial getFreeEspecialServer(ServerTorniquetEspecial[] servers) {
     	// Encara s'ha de fer
 		return null;
     	

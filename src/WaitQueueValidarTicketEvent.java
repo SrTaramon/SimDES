@@ -1,10 +1,9 @@
 import java.util.Random;
 
-public class WaitQueueTorniquetEvent extends Event {
-
+public class WaitQueueValidarTicketEvent extends Event {
 	private ServerTorniquet server;
 
-	public WaitQueueTorniquetEvent(Fan fan, double time, ServerTorniquet server) {
+	public WaitQueueValidarTicketEvent(Fan fan, double time, ServerTorniquet server) {
 		super(fan, time);
 		this.server = server;
 		// TODO Auto-generated constructor stub
@@ -31,5 +30,4 @@ public class WaitQueueTorniquetEvent extends Event {
 		// TODO Auto-generated method stub
 
 	}
-
 }

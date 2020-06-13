@@ -1,4 +1,4 @@
-class EspecialServerTorniquet {
+class ServerTorniquetEspecial {
     /**
      * Counter integer that generates ServerID in a non-repetitive way.
      */
@@ -21,7 +21,7 @@ class EspecialServerTorniquet {
     /**
      * Creates a server.
      */
-    public EspecialServerTorniquet() {
+    public ServerTorniquetEspecial() {
         this.serverID = counter;
         counter++;
     }
