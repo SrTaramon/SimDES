@@ -50,8 +50,7 @@ public class EventManager {
      * @param svcRate service rate, lambda in RandomGenerator constructor
      * @param restRate rest rate, rho in RandomGenerator constructor
      */
-    public EventManager(int numServers, int numEspecialServers, int numCustomer,
-        long seed, int arrivalRate) {
+    public EventManager(int numServers, int numEspecialServers, int numServersValidar, int numEspecailServersValidar, int numCustomer, long seed, int arrivalRate) {
         this.events = new PriorityQueue<>(new EventComparator());
         
         Random rnd = new Random();
@@ -79,6 +78,14 @@ public class EventManager {
         for (int i = 0;i < numEspecialServers;i++) {
             this.special_servers[i] = new ServerTorniquetEspecial();
         }
+        this.serversValidar = new ServerValidarTicket [numServersValidar];
+        for (int i = 0;i < numServersValidar;i++) {
+            this.special_servers[i] = new ServerTorniquetEspecial();
+        }
+        this.serversValidarEspecial = new ServerValidarTicketEspecial [numEspecailServersValidar];
+        for (int i = 0;i < numEspecailServersValidar;i++) {
+            this.special_servers[i] = new ServerTorniquetEspecial();
+        }
     }
 
 
@@ -100,12 +107,10 @@ public class EventManager {
             System.out.println(firstEvent);
             Event newEvent = firstEvent.getNextEvent(servers,gen, special_servers, serversValidar, serversValidarEspecial);
             if (newEvent != null) {
-                newEvent.updateStatistics(statistics);
                 events.add(newEvent);	
             }
 
         }
-        System.out.println(statistics);
     }
 
     /**

@@ -2,9 +2,9 @@ import java.util.Random;
 
 public class WaitQueueValidarTicketEspecialEvent extends Event {
 	
-	private ServerTorniquetEspecial server;
+	private ServerValidarTicketEspecial server;
 
-	public WaitQueueValidarTicketEspecialEvent(Fan fan, double time, ServerTorniquetEspecial server) {
+	public WaitQueueValidarTicketEspecialEvent(Fan fan, double time, ServerValidarTicketEspecial server) {
 		super(fan, time);
 		this.server = server;
 		// TODO Auto-generated constructor stub

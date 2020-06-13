@@ -1,9 +1,9 @@
 import java.util.Random;
 
 public class WaitQueueValidarTicketEvent extends Event {
-	private ServerTorniquet server;
+	private ServerValidarTicket server;
 
-	public WaitQueueValidarTicketEvent(Fan fan, double time, ServerTorniquet server) {
+	public WaitQueueValidarTicketEvent(Fan fan, double time, ServerValidarTicket server) {
 		super(fan, time);
 		this.server = server;
 		// TODO Auto-generated constructor stub
@@ -14,12 +14,12 @@ public class WaitQueueValidarTicketEvent extends Event {
 		
 		if (this.server.isBeenServed(this.getFan())) {
 			
-			ServedTorniquetEvent Event = new ServedTorniquetEvent(this.getFan(), this.server.getDoneTime(),this.server);
+			ServedValidarTicketEvent Event = new ServedValidarTicketEvent(this.getFan(), this.server.getDoneTime(),this.server);
 			this.server.setServedEvent(Event);
 			return Event;
 		} else {
 			
-			WaitQueueTorniquetEvent Event = new WaitQueueTorniquetEvent(this.getFan(), this.server.getDoneTime(), server);
+			WaitQueueValidarTicketEvent Event = new WaitQueueValidarTicketEvent(this.getFan(), this.server.getDoneTime(), server);
     		this.server.setWaitEvent(Event);
     		return Event;
 		}

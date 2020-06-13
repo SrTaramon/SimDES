@@ -2,9 +2,9 @@ import java.util.Random;
 
 public class ServedValidarTicketEspecialEvent extends Event {
 
-	private ServerTorniquetEspecial server;
+	private ServerValidarTicketEspecial server;
 
-	public ServedValidarTicketEspecialEvent(Fan fan, double time, ServerTorniquetEspecial server) {
+	public ServedValidarTicketEspecialEvent(Fan fan, double time, ServerValidarTicketEspecial server) {
 		super(fan, time);
 		this.server = server;
 		// TODO Auto-generated constructor stub
@@ -17,7 +17,7 @@ public class ServedValidarTicketEspecialEvent extends Event {
 		double x = (double) (gen.nextInt(1));
 		//Aqui es suma un temps fixe.
 		
-		//DoneTorniquetEspecialEvent Event = new DoneTorniquetEspecialEvent(this.getFan(), this.getTime() + x,this.server);
+		DoneValidarTicketEspecialEvent Event = new DoneValidarTicketEspecialEvent(this.getFan(), this.getTime() + x,this.server);
 		this.server.setServedEvent(Event);
 		return Event;
 	}

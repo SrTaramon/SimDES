@@ -1,28 +1,29 @@
 import java.util.Random;
 
-public class ServedValidarTicketEvent extends Event {
+public class DoneValidarTicketEvent extends Event{
 
 	private ServerValidarTicket server;
 
-	public ServedValidarTicketEvent(Fan fan, double time, ServerValidarTicket server) {
+	public DoneValidarTicketEvent(Fan fan, double time, ServerValidarTicket server) {
 		super(fan, time);
 		this.server = server;
 		// TODO Auto-generated constructor stub
 	}
 
-
 	public Event getNextEvent(ServerTorniquet[] servers, Random gen, ServerTorniquetEspecial[] especial_servers, ServerValidarTicket[] serversValidar, ServerValidarTicketEspecial[] serversValidarEspecial) {
+		this.server.flushDoneEvent();
+		//return createArribadaVestibolEntrada();
+		return createArrivalVestibolSortida();
+	}
 
-		// En aquest cas al ser un normal tardarà una mica menys de lo normal.
-		double x = (double) (gen.nextInt(1) / 5);
-		DoneValidarTicketEvent Event = new DoneValidarTicketEvent(this.getFan(), this.getTime() + x,this.server);
-		this.server.setServedEvent(Event);
-		return Event;
+	private ArrivalVestibolSortida createArrivalVestibolSortida() {
+		// TODO Auto-generated method stub
+		return new ArrivalVestibolSortida(this.getFan(), this.getTime());
 	}
 
 	public void updateStatistics(Statistics statistics) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 }

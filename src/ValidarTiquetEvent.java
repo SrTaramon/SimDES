@@ -13,7 +13,7 @@ public class ValidarTiquetEvent extends Event {
 		if (this.getFan().isEspecial()) { // MIra si el clinet Es especial o no
         	
         	// Cas on el client es especial i necessita passar per la cua especial
-        	ServerTorniquetEspecial freeEspecialServer = getFreeEspecialServer(especial_servers);
+			ServerValidarTicketEspecial freeEspecialServer = getFreeEspecialServerValidar(serversValidarEspecial);
         	if (freeEspecialServer.isAvailable()) {
         		
         		//No Hi ha ningu a la cua 
@@ -32,7 +32,7 @@ public class ValidarTiquetEvent extends Event {
         } else {
         	
         	// Cas on el client NO es especial i necessita passar per la cua 
-        	ServerTorniquet freeServer = getFreeServer(servers);
+        	ServerValidarTicket freeServer = getFreeServerValidar(serversValidar);
         	if (freeServer.isAvailable()) {
         		
         		//No Hi ha ningu a la cua 
@@ -53,22 +53,25 @@ public class ValidarTiquetEvent extends Event {
 	}
 	
 	
-    private ServedValidarTicketEspecialEvent createServedValidarTicketEspecialEvent(ServerTorniquetEspecial server) {
+
+
+
+	private ServedValidarTicketEspecialEvent createServedValidarTicketEspecialEvent(ServerValidarTicketEspecial server) {
 		// TODO Auto-generated method stub
 		return new ServedValidarTicketEspecialEvent(this.getFan(), this.getTime(), server);
 	}
     
-    private WaitQueueValidarTicketEspecialEvent createWaitQueueValidarTicketEspecialEvent(ServerTorniquetEspecial server) {
+    private WaitQueueValidarTicketEspecialEvent createWaitQueueValidarTicketEspecialEvent(ServerValidarTicketEspecial server) {
 		// TODO Auto-generated method stub
 		return new WaitQueueValidarTicketEspecialEvent(this.getFan(), this.getTime(), server);
 	}
 
-    private ServedValidarTicketEvent createServedValidarTicketEvent(ServerTorniquet server) {
+    private ServedValidarTicketEvent createServedValidarTicketEvent(ServerValidarTicket server) {
 		// TODO Auto-generated method stub
 		return new ServedValidarTicketEvent(this.getFan(), this.getTime(), server);
 	}
     
-    private WaitQueueValidarTicketEvent createWaitQueueValidarTicketEvent(ServerTorniquet server) {
+    private WaitQueueValidarTicketEvent createWaitQueueValidarTicketEvent(ServerValidarTicket server) {
 		// TODO Auto-generated method stub
 		return new WaitQueueValidarTicketEvent(this.getFan(), this.getTime(), server);
 	}
@@ -79,30 +82,15 @@ public class ValidarTiquetEvent extends Event {
 
 	}
 	
-	 public ServerTorniquet getFreeServer(ServerTorniquet[] servers) {
-	    // MOdificar funcio per mirar uina de les cues pot anar. El server mirara si es vip o no.
-	    boolean hasFoundSlots = false;
-	    ServerTorniquet choiceServer = null;
-	    for (int i = 0; i < servers.length; i++) {
-      	ServerTorniquet newServer = servers[i];
-            if (newServer.canTakeServedEvent()) {
-                return newServer;
-            } else if (newServer.canTakeWaitEvent() && !hasFoundSlots) {
-                choiceServer = newServer;
-                hasFoundSlots = true;
-            }
-        }
-        if (hasFoundSlots == false) {
-            return null;
-        } else {
-            return choiceServer;
-        }
-    }
-	 
-    public ServerTorniquetEspecial getFreeEspecialServer(ServerTorniquetEspecial[] servers) {
-	   	// Encara s'ha de fer
+
+	private ServerValidarTicket getFreeServerValidar(ServerValidarTicket[] serversValidar) {
+		// TODO Auto-generated method stub
 		return null;
-	    	
-    }
+	}
+    
+    private ServerValidarTicketEspecial getFreeEspecialServerValidar(ServerValidarTicketEspecial[] serversValidarEspecial) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
