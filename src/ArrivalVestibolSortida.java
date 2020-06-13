@@ -31,7 +31,7 @@ public class ArrivalVestibolSortida extends Event {
     public Event getNextEvent(Server[] servers, Random gen, EspecialServer[] especial_servers) {
     	
         
-        if (this.getFan().isHaVistPartit()) { //COndicio perque el fan surti del sistema
+        if (this.getFan().isHaVistPartit()) { //COndicio perque el fan sorti del sistema
         	return createLeaveEvent();
         	
         } else if (this.getFan().isEspecial()) { // MIra si el clinet Es especial o no
@@ -42,14 +42,14 @@ public class ArrivalVestibolSortida extends Event {
         		
         		//No Hi ha ningu a la cua 
         		ServedTorniquetEspecialEvent Event = createServedTorniquetEspecialEvent(freeEspecialServer);
-        		freeEspecialServer.setWaitQueue(Event);
+        		freeEspecialServer.setServedEvent(Event);
         		return Event;
         		
         	} else {
         		
         		//Si Hi ha algu a la cua i es te que esperar a que s'acabi.
         		WaitQueueTorniquetEspecialEvent Event = createWaitQueueTorniquetEspecialEvent(freeEspecialServer);
-        		freeEspecialServer.setWaitQueue(Event);
+        		freeEspecialServer.setWaitEvent(Event);
         		return Event;
         		
         	}

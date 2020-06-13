@@ -12,8 +12,12 @@ public class ServedTorniquetEvent extends Event {
 
 
 	public Event getNextEvent(Server[] servers, Random gen, EspecialServer[] especial_servers) {
-		// TODO Auto-generated method stub
-		return null;
+
+		// En aquest cas al ser un normal tardarà una mica menys de lo normal.
+		double x = (double) (gen.nextInt(1) / 5);
+		DoneTorniquetEvent Event = new DoneTorniquetEvent(this.getFan(), this.getTime() + x,this.server);
+		this.server.setServedEvent(Event);
+		return Event;
 	}
 
 	public void updateStatistics(Statistics statistics) {
