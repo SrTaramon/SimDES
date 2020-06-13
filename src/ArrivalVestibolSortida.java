@@ -28,7 +28,7 @@ public class ArrivalVestibolSortida extends Event {
      *         available server and there are no empty servers. null, which won't be
      *         reached as it's a Debugging statement.
      */
-    public Event getNextEvent(Server[] servers, Random gen, EspecialServer[] especial_servers) {
+    public Event getNextEvent(ServerTorniquet[] servers, Random gen, EspecialServerTorniquet[] especial_servers) {
     	
         
         if (this.getFan().isHaVistPartit()) { //COndicio perque el fan sorti del sistema
@@ -37,7 +37,7 @@ public class ArrivalVestibolSortida extends Event {
         } else if (this.getFan().isEspecial()) { // MIra si el clinet Es especial o no
         	
         	// Cas on el client es especial i necessita passar per la cua especial
-        	EspecialServer freeEspecialServer = getFreeEspecialServer(especial_servers);
+        	EspecialServerTorniquet freeEspecialServer = getFreeEspecialServer(especial_servers);
         	if (freeEspecialServer.isAvailable()) {
         		
         		//No Hi ha ningu a la cua 
@@ -56,7 +56,7 @@ public class ArrivalVestibolSortida extends Event {
         } else {
         	
         	// Cas on el client NO es especial i necessita passar per la cua 
-        	Server freeServer = getFreeServer(servers);
+        	ServerTorniquet freeServer = getFreeServer(servers);
         	if (freeServer.isAvailable()) {
         		
         		//No Hi ha ningu a la cua 
@@ -81,22 +81,22 @@ public class ArrivalVestibolSortida extends Event {
 		return new LeaveEvent(this.getFan(), this.getTime());
 	}
     
-    private ServedTorniquetEspecialEvent createServedTorniquetEspecialEvent(EspecialServer server) {
+    private ServedTorniquetEspecialEvent createServedTorniquetEspecialEvent(EspecialServerTorniquet server) {
 		// TODO Auto-generated method stub
 		return new ServedTorniquetEspecialEvent(this.getFan(), this.getTime(), server);
 	}
     
-    private WaitQueueTorniquetEspecialEvent createWaitQueueTorniquetEspecialEvent(EspecialServer server) {
+    private WaitQueueTorniquetEspecialEvent createWaitQueueTorniquetEspecialEvent(EspecialServerTorniquet server) {
 		// TODO Auto-generated method stub
 		return new WaitQueueTorniquetEspecialEvent(this.getFan(), this.getTime(), server);
 	}
 
-    private ServedTorniquetEvent createServedTorniquetEvent(Server server) {
+    private ServedTorniquetEvent createServedTorniquetEvent(ServerTorniquet server) {
 		// TODO Auto-generated method stub
 		return new ServedTorniquetEvent(this.getFan(), this.getTime(), server);
 	}
     
-    private WaitQueueTorniquetEvent createWaitQueueTorniquetEvent(Server server) {
+    private WaitQueueTorniquetEvent createWaitQueueTorniquetEvent(ServerTorniquet server) {
 		// TODO Auto-generated method stub
 		return new WaitQueueTorniquetEvent(this.getFan(), this.getTime(), server);
 	}
@@ -119,19 +119,19 @@ public class ArrivalVestibolSortida extends Event {
      *         otherwise.
      */
     
-    public EspecialServer getFreeEspecialServer(EspecialServer[] servers) {
+    public EspecialServerTorniquet getFreeEspecialServer(EspecialServerTorniquet[] servers) {
     	// Encara s'ha de fer
 		return null;
     	
     }
     
     
-    public Server getFreeServer(Server[] servers) {
+    public ServerTorniquet getFreeServer(ServerTorniquet[] servers) {
     	// MOdificar funcio per mirar uina de les cues pot anar. El server mirara si es vip o no.
         boolean hasFoundSlots = false;
-        Server choiceServer = null;
+        ServerTorniquet choiceServer = null;
         for (int i = 0; i < servers.length; i++) {
-            Server newServer = servers[i];
+        	ServerTorniquet newServer = servers[i];
             if (newServer.canTakeServedEvent()) {
                 return newServer;
             } else if (newServer.canTakeWaitEvent() && !hasFoundSlots) {

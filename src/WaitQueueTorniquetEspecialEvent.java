@@ -2,16 +2,16 @@ import java.util.Random;
 
 public class WaitQueueTorniquetEspecialEvent extends Event {
 	
-	private EspecialServer server;
+	private EspecialServerTorniquet server;
 
-	public WaitQueueTorniquetEspecialEvent(Fan fan, double time, EspecialServer server) {
+	public WaitQueueTorniquetEspecialEvent(Fan fan, double time, EspecialServerTorniquet server) {
 		super(fan, time);
 		this.server = server;
 		// TODO Auto-generated constructor stub
 	}
 
 
-	public Event getNextEvent(Server[] servers, Random gen, EspecialServer[] especial_servers) {
+	public Event getNextEvent(ServerTorniquet[] servers, Random gen, EspecialServerTorniquet[] especial_servers) {
 		// TODO Auto-generated method stub
 		if (this.server.isBeenServed(this.getFan())) {
 			

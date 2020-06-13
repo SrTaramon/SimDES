@@ -2,15 +2,15 @@ import java.util.Random;
 
 public class DoneTorniquetEvent extends Event{
 
-	private Server server;
+	private ServerTorniquet server;
 
-	public DoneTorniquetEvent(Fan fan, double time, Server server) {
+	public DoneTorniquetEvent(Fan fan, double time, ServerTorniquet server) {
 		super(fan, time);
 		this.server = server;
 		// TODO Auto-generated constructor stub
 	}
 
-	public Event getNextEvent(Server[] servers, Random gen, EspecialServer[] especial_servers) {
+	public Event getNextEvent(ServerTorniquet[] servers, Random gen, EspecialServerTorniquet[] especial_servers) {
 		this.server.flushDoneEvent();
 		return createArribadaVestibolEntrada();
 	}

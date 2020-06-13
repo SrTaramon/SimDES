@@ -2,16 +2,16 @@ import java.util.Random;
 
 public class ServedTorniquetEvent extends Event {
 
-	private Server server;
+	private ServerTorniquet server;
 
-	public ServedTorniquetEvent(Fan fan, double time, Server server) {
+	public ServedTorniquetEvent(Fan fan, double time, ServerTorniquet server) {
 		super(fan, time);
 		this.server = server;
 		// TODO Auto-generated constructor stub
 	}
 
 
-	public Event getNextEvent(Server[] servers, Random gen, EspecialServer[] especial_servers) {
+	public Event getNextEvent(ServerTorniquet[] servers, Random gen, EspecialServerTorniquet[] especial_servers) {
 
 		// En aquest cas al ser un normal tardarà una mica menys de lo normal.
 		double x = (double) (gen.nextInt(1) / 5);

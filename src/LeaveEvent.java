@@ -8,7 +8,7 @@ public class LeaveEvent extends Event {
 	}
 
 
-	public Event getNextEvent(Server[] servers, Random gen, EspecialServer[] especial_servers) {
+	public Event getNextEvent(ServerTorniquet[] servers, Random gen, EspecialServerTorniquet[] especial_servers) {
 		return null;
 	}
 

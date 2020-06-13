@@ -12,9 +12,9 @@ public class EventManager {
     /**
      * Array of servers that determines the way ArrivalEvents are processed.
      */
-    Server [] servers;
+	ServerTorniquet [] servers;
     
-    EspecialServer[] special_servers;
+    EspecialServerTorniquet[] special_servers;
 
     /**
      * PriorityQueue of events to be cleared by the end of the simulation.
@@ -67,13 +67,13 @@ public class EventManager {
             tempEvent = new ArrivalVestibolSortida(fan,time);
             events.add(tempEvent);
         }
-        this.servers = new Server [numServers];
+        this.servers = new ServerTorniquet [numServers];
         for (int i = 0;i < numServers;i++) {
-            this.servers[i] = new Server();
+            this.servers[i] = new ServerTorniquet();
         }
-        this.special_servers = new EspecialServer [numEspecialServers];
+        this.special_servers = new EspecialServerTorniquet [numEspecialServers];
         for (int i = 0;i < numEspecialServers;i++) {
-            this.special_servers[i] = new EspecialServer();
+            this.special_servers[i] = new EspecialServerTorniquet();
         }
     }
 
