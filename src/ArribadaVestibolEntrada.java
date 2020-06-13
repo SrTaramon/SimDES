@@ -7,24 +7,20 @@ public class ArribadaVestibolEntrada extends Event{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Event getNextEvent(Server[] servers, Random gen) {
-        Server freeServer = getFreeServer(servers);
-        if (freeServer == null) {
-            return createLeaveEvent();
-        } else if (freeServer.canTakeServedEvent()) {
-        	TorniquetSortida newEvent = createServedEvent(freeServer);
-            freeServer.setServedEvent(newEvent);
-            return newEvent;
-        } else if (freeServer.canTakeWaitEvent()) {
-            WaitEvent newEvent = createWaitEvent(freeServer);
-            freeServer.setWaitEvent(newEvent);
-            return newEvent;
+	
+	public Event getNextEvent(ServerTorniquet[] servers, Random gen, EspecialServerTorniquet[] especial_servers) {
+		if (this.getFan().isHaVistPartit()) { //COndicio perque el fan sorti del sistema
+        	//fer event Validar tiquet
+			if (this.getFan().isBillet()) {
+				return new ValidarTiquetEvent(this.getFan(), this.getTime());
+			} else {
+				return new ComprarTiquetEvent(this.getFan(), this.getTime());
+			}
+			
         } else {
-            System.out.println("Bug in ArrivalEvents");
-            return null;
+        	return new PartitEvent(this.getFan(), this.getTime());
         }
-        return null;
-    }
+	}
 
 //    /**
 //     * Creates a LeaveEvent not bounded to any server.
@@ -96,6 +92,7 @@ public class ArribadaVestibolEntrada extends Event{
     public String toString() {
         return String.format("%.3f", this.getTime()) + ' ' + this.getFanID() + " arrives";
     }
+
 
 
 }

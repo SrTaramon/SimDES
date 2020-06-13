@@ -61,8 +61,12 @@ public class Fan {
 		return HaVistPartit;
 	}
 
-	public static void setHaVistPartit(boolean haVistPartit) {
+	public void setHaVistPartit(boolean haVistPartit) {
 		HaVistPartit = haVistPartit;
+	}
+	
+	public void setBillet(boolean billet) {
+		Billet = billet;
 	}
 
 }
