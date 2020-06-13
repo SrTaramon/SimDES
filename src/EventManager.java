@@ -13,6 +13,8 @@ public class EventManager {
      * Array of servers that determines the way ArrivalEvents are processed.
      */
     Server [] servers;
+    
+    EspecialServer[] special_servers;
 
     /**
      * PriorityQueue of events to be cleared by the end of the simulation.
@@ -44,8 +46,8 @@ public class EventManager {
      * @param svcRate service rate, lambda in RandomGenerator constructor
      * @param restRate rest rate, rho in RandomGenerator constructor
      */
-    public EventManager(int numServers, int numCustomer,
-        long seed, int arrivalRate, double svcRate, double restRate) {
+    public EventManager(int numServers, int numEspecialServers, int numCustomer,
+        long seed, int arrivalRate) {
         this.events = new PriorityQueue<>(new EventComparator());
         
         Random rnd = new Random();
@@ -69,6 +71,10 @@ public class EventManager {
         for (int i = 0;i < numServers;i++) {
             this.servers[i] = new Server();
         }
+        this.special_servers = new EspecialServer [numEspecialServers];
+        for (int i = 0;i < numEspecialServers;i++) {
+            this.special_servers[i] = new EspecialServer();
+        }
     }
 
 
@@ -88,10 +94,10 @@ public class EventManager {
         while (events.size() > 0) {
             Event firstEvent = getFirstEvent();
             System.out.println(firstEvent);
-            Event newEvent = firstEvent.getNextEvent(servers,gen);
+            Event newEvent = firstEvent.getNextEvent(servers,gen, special_servers);
             if (newEvent != null) {
                 newEvent.updateStatistics(statistics);
-                events.add(newEvent);
+                events.add(newEvent);	
             }
 
         }
