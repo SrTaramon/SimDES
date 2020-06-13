@@ -18,7 +18,12 @@ public class Fan {
     /**
      * CustomerID  that allows distinguishing between 2 customers.
      */
-    private static boolean VIP;
+    private static boolean HaVistPartit;
+    
+    /**
+     * CustomerID  that allows distinguishing between 2 customers.
+     */
+    private static boolean Especial;
 
     /**
      * Time when the customer first arrives.
@@ -48,8 +53,16 @@ public class Fan {
 		return Billet;
 	}
 
-	public boolean isVIP() {
-		return VIP;
+	public boolean isEspecial() {
+		return Especial;
+	}
+
+	public boolean isHaVistPartit() {
+		return HaVistPartit;
+	}
+
+	public static void setHaVistPartit(boolean haVistPartit) {
+		HaVistPartit = haVistPartit;
 	}
 
 }

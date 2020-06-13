@@ -59,7 +59,7 @@ public class EventManager {
         events.add(tempEvent);
         
         for (int i = 0;i < numCustomer - 1;i++) {
-            int x = this.gen.nextInt(arrivalRate);
+            int x = this.gen.nextInt(arrivalRate); //modificarho 
             time += x;
             fan = new Fan(time);
             tempEvent = new ArrivalVestibolSortida(fan,time);

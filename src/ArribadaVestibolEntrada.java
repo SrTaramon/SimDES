@@ -26,34 +26,34 @@ public class ArribadaVestibolEntrada extends Event{
         return null;
     }
 
-    /**
-     * Creates a LeaveEvent not bounded to any server.
-     * 
-     * @return LeaveEvent
-     */
-    public LeaveEvent createLeaveEvent() {
-        return new LeaveEvent(this.getCustomer(), this.getTime());
-    }
-
-    /**
-     * Creates a ServedEvent bounded to an empty server.
-     * 
-     * @param freeServer the server that is empty.
-     * @return ServedEvent.
-     */
-    public ServedEvent createServedEvent(Server freeServer) {
-        return new ServedEvent(this.getCustomer(), this.getTime(), freeServer);
-    }
-
-    /**
-     * Creates a WaitEvent bounded to a partially occupied server.
-     * 
-     * @param freeServer the server that is partially occupied.
-     * @return WaitEvent.
-     */
-    public WaitEvent createWaitEvent(Server freeServer) {
-        return new WaitEvent(this.getCustomer(), this.getTime(), freeServer);
-    }
+//    /**
+//     * Creates a LeaveEvent not bounded to any server.
+//     * 
+//     * @return LeaveEvent
+//     */
+//    public LeaveEvent createLeaveEvent() {
+//        return new LeaveEvent(this.getCustomer(), this.getTime());
+//    }
+//
+//    /**
+//     * Creates a ServedEvent bounded to an empty server.
+//     * 
+//     * @param freeServer the server that is empty.
+//     * @return ServedEvent.
+//     */
+//    public ServedEvent createServedEvent(Server freeServer) {
+//        return new ServedEvent(this.getCustomer(), this.getTime(), freeServer);
+//    }
+//
+//    /**
+//     * Creates a WaitEvent bounded to a partially occupied server.
+//     * 
+//     * @param freeServer the server that is partially occupied.
+//     * @return WaitEvent.
+//     */
+//    public WaitEvent createWaitEvent(Server freeServer) {
+//        return new WaitEvent(this.getCustomer(), this.getTime(), freeServer);
+//    }
 
     /**
      * Modifies information in statistics if required.

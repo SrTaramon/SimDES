@@ -28,7 +28,7 @@ public abstract class Event {
     /** 
      * Creates the next event of parent type based on its original type.
      */
-    public abstract Event getNextEvent(Server [] servers,Random gen);
+    public abstract Event getNextEvent(Server [] servers, Random gen, EspecialServer[] especial_servers);
 
     /** Modifies information in statistics if required.
      */
