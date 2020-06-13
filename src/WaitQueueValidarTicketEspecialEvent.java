@@ -11,7 +11,7 @@ public class WaitQueueValidarTicketEspecialEvent extends Event {
 	}
 
 
-	public Event getNextEvent(ServerTorniquet[] servers, Random gen, ServerTorniquetEspecial[] especial_servers) {
+	public Event getNextEvent(ServerTorniquet[] servers, Random gen, ServerTorniquetEspecial[] especial_servers, ServerValidarTicket[] serversValidar, ServerValidarTicketEspecial[] serversValidarEspecial) {
 		
 		// En aquest cas al ser un esecial tardarà una mica mes de lo normal.
 		if (this.server.isBeenServed(this.getFan())) {

@@ -28,7 +28,7 @@ public class ArrivalVestibolSortida extends Event {
      *         available server and there are no empty servers. null, which won't be
      *         reached as it's a Debugging statement.
      */
-    public Event getNextEvent(ServerTorniquet[] servers, Random gen, ServerTorniquetEspecial[] especial_servers) {
+    public Event getNextEvent(ServerTorniquet[] servers, Random gen, ServerTorniquetEspecial[] especial_servers, ServerValidarTicket[] serversValidar, ServerValidarTicketEspecial[] serversValidarEspecial) {
     	
         
         if (this.getFan().isHaVistPartit()) { //COndicio perque el fan sorti del sistema

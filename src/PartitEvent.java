@@ -8,7 +8,7 @@ public class PartitEvent extends Event {
 	}
 
 	@Override
-	public Event getNextEvent(ServerTorniquet[] servers, Random gen, ServerTorniquetEspecial[] especial_servers) {
+	public Event getNextEvent(ServerTorniquet[] servers, Random gen, ServerTorniquetEspecial[] especial_servers, ServerValidarTicket[] serversValidar, ServerValidarTicketEspecial[] serversValidarEspecial) {
 		// TODO Auto-generated method stub
 		int x = gen.nextInt(30) + 120;
 		this.getFan().setHaVistPartit(true);

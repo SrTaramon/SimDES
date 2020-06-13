@@ -28,7 +28,7 @@ public abstract class Event {
     /** 
      * Creates the next event of parent type based on its original type.
      */
-    public abstract Event getNextEvent(ServerTorniquet [] servers, Random gen, ServerTorniquetEspecial[] especial_servers);
+    public abstract Event getNextEvent(ServerTorniquet [] servers, Random gen, ServerTorniquetEspecial[] especial_servers, ServerValidarTicket[] serversValidar, ServerValidarTicketEspecial[] serversValidarEspecial);
 
     /** Modifies information in statistics if required.
      */

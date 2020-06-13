@@ -15,6 +15,10 @@ public class EventManager {
 	ServerTorniquet [] servers;
     
     ServerTorniquetEspecial[] special_servers;
+    
+    ServerValidarTicket[] serversValidar;
+    
+    ServerValidarTicketEspecial[] serversValidarEspecial;
 
     /**
      * PriorityQueue of events to be cleared by the end of the simulation.
@@ -94,7 +98,7 @@ public class EventManager {
         while (events.size() > 0) {
             Event firstEvent = getFirstEvent();
             System.out.println(firstEvent);
-            Event newEvent = firstEvent.getNextEvent(servers,gen, special_servers);
+            Event newEvent = firstEvent.getNextEvent(servers,gen, special_servers, serversValidar, serversValidarEspecial);
             if (newEvent != null) {
                 newEvent.updateStatistics(statistics);
                 events.add(newEvent);	

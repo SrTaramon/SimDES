@@ -10,7 +10,7 @@ public class DoneTorniquetEspecialEvent extends Event{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Event getNextEvent(ServerTorniquet[] servers, Random gen, ServerTorniquetEspecial[] especial_servers) {
+	public Event getNextEvent(ServerTorniquet[] servers, Random gen, ServerTorniquetEspecial[] especial_servers, ServerValidarTicket[] serversValidar, ServerValidarTicketEspecial[] serversValidarEspecial) {
 		this.server.flushDoneEvent();
 		return createArribadaVestibolEntrada();
 	}

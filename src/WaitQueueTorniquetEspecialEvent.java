@@ -11,7 +11,7 @@ public class WaitQueueTorniquetEspecialEvent extends Event {
 	}
 
 
-	public Event getNextEvent(ServerTorniquet[] servers, Random gen, ServerTorniquetEspecial[] especial_servers) {
+	public Event getNextEvent(ServerTorniquet[] servers, Random gen, ServerTorniquetEspecial[] especial_servers, ServerValidarTicket[] serversValidar, ServerValidarTicketEspecial[] serversValidarEspecial) {
 		// TODO Auto-generated method stub
 		if (this.server.isBeenServed(this.getFan())) {
 			

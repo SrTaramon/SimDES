@@ -8,7 +8,7 @@ public class ArribadaVestibolEntrada extends Event{
 	}
 	
 	
-	public Event getNextEvent(ServerTorniquet[] servers, Random gen, ServerTorniquetEspecial[] especial_servers) {
+	public Event getNextEvent(ServerTorniquet[] servers, Random gen, ServerTorniquetEspecial[] especial_servers, ServerValidarTicket[] serversValidar, ServerValidarTicketEspecial[] serversValidarEspecial) {
 		if (this.getFan().isHaVistPartit()) { //COndicio perque el fan sorti del sistema
         	//fer event Validar tiquet
 			if (this.getFan().isBillet()) {
