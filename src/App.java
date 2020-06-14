@@ -29,21 +29,28 @@ public class App {
         //Scanner sc = new Scanner(System.in);
         int seed = sc.nextInt();
         int numServers = sc.nextInt();
+        int numEspecialServers = sc.nextInt();
+        int numServersValidar = sc.nextInt();
+        int numEspecailServersValidar = sc.nextInt();
         int numCustomer = sc.nextInt();
         int arrivalRate = sc.nextInt();
         double svcRate = sc.nextDouble();
         sc.close();
         double restRate = 1.0;
         
-        System.out.println("Yesaaaaa " + seed + " " + numServers + " " + numCustomer + " " + arrivalRate + " " + svcRate);
+        //System.out.println("Yesaaaaa " + seed + " " + numServers + " " + numCustomer + " " + arrivalRate + " " + svcRate);
         
         Random rnd = new Random();
         rnd.setSeed(seed);
         double x = rnd.nextFloat();
-        System.out.println(x);
-        System.out.println(rnd.nextFloat() + " " + rnd.nextFloat() + " " + rnd.nextFloat() + " " + rnd.nextFloat() + " " + rnd.nextFloat() + " " + rnd.nextFloat() + " " + rnd.nextFloat());
+        //System.out.println(x);
+        //System.out.println(rnd.nextFloat() + " " + rnd.nextFloat() + " " + rnd.nextFloat() + " " + rnd.nextFloat() + " " + rnd.nextFloat() + " " + rnd.nextFloat() + " " + rnd.nextFloat());
         Random rnd2 = new Random(1);
         
-        System.out.println(rnd2.nextInt(arrivalRate) + " " + rnd2.nextInt(arrivalRate) + " " + rnd2.nextInt(arrivalRate) + " " + rnd2.nextInt(arrivalRate));
+        //System.out.println(rnd2.nextInt(arrivalRate) + " " + rnd2.nextInt(arrivalRate) + " " + rnd2.nextInt(arrivalRate) + " " + rnd2.nextInt(arrivalRate));
+        
+        
+        EventManager e = new EventManager(numServers, numEspecialServers, numServersValidar, numEspecailServersValidar, numCustomer, seed, arrivalRate);
+        e.doService();
     }
 }
