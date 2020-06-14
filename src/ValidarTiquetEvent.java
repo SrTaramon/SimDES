@@ -18,14 +18,14 @@ public class ValidarTiquetEvent extends Event {
         		
         		//No Hi ha ningu a la cua 
         		ServedValidarTicketEspecialEvent Event = createServedValidarTicketEspecialEvent(freeEspecialServer);
-        		freeEspecialServer.setServedEvent(Event);
+        		freeEspecialServer.addWaitEvent(Event);
         		return Event;
         		
         	} else {
         		
         		//Si Hi ha algu a la cua i es te que esperar a que s'acabi.
         		WaitQueueValidarTicketEspecialEvent Event = createWaitQueueValidarTicketEspecialEvent(freeEspecialServer);
-        		freeEspecialServer.setWaitEvent(Event);
+        		freeEspecialServer.addWaitEvent(Event);
         		return Event;
         		
         	}
@@ -37,7 +37,7 @@ public class ValidarTiquetEvent extends Event {
         		
         		//No Hi ha ningu a la cua 
         		ServedValidarTicketEvent Event = createServedValidarTicketEvent(freeServer);
-        		freeServer.setServedEvent(Event);
+        		freeServer.addWaitEvent(Event);
         		return Event;
         		
         		
@@ -45,7 +45,7 @@ public class ValidarTiquetEvent extends Event {
         		
         		//Si Hi ha algu a la cua i es te que esperar a que s'acabi.
         		WaitQueueValidarTicketEvent Event = createWaitQueueValidarTicketEvent(freeServer);
-        		freeServer.setWaitEvent(Event);
+        		freeServer.addWaitEvent(Event);
         		return Event;
         		
         	}
@@ -81,16 +81,39 @@ public class ValidarTiquetEvent extends Event {
 		// TODO Auto-generated method stub
 
 	}
-	
 
 	private ServerValidarTicket getFreeServerValidar(ServerValidarTicket[] serversValidar) {
-		// TODO Auto-generated method stub
-		return null;
+    	int minimSizeCua = 9999;
+    	ServerValidarTicket choiceServer = null;
+        for (int i = 0; i < serversValidar.length; i++) {
+        	ServerValidarTicket newServer = serversValidar[i];
+            if (newServer.isAvailable()) {
+                return newServer;
+            } else if (newServer.getCuaSize() < minimSizeCua) {
+            	minimSizeCua = newServer.getCuaSize();
+                choiceServer = newServer;
+            }
+        }
+	    return choiceServer;
 	}
     
     private ServerValidarTicketEspecial getFreeEspecialServerValidar(ServerValidarTicketEspecial[] serversValidarEspecial) {
-		// TODO Auto-generated method stub
-		return null;
+        int minimSizeCua = 9999;
+        ServerValidarTicketEspecial choiceServer = null;
+        for (int i = 0; i < serversValidarEspecial.length; i++) {
+        	ServerValidarTicketEspecial newServer = serversValidarEspecial[i];
+            if (newServer.isAvailable()) {
+                return newServer;
+            } else if (newServer.getCuaSize() < minimSizeCua) {
+            	minimSizeCua = newServer.getCuaSize();
+                choiceServer = newServer;
+            }
+        }
+	    return choiceServer;
 	}
+    
+    public String toString() {
+        return String.format("%.3f", this.getTime()) + ' ' + this.getFanID() + " Valida Tiquet";
+    }
 
 }

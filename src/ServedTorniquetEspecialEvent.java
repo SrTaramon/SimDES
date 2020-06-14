@@ -17,7 +17,7 @@ public class ServedTorniquetEspecialEvent extends Event{
 		// En aquest cas al ser un esecial tardarà una mica mes de lo normal.
 		double x = (double) (gen.nextInt(1));
 		DoneTorniquetEspecialEvent Event = new DoneTorniquetEspecialEvent(this.getFan(), this.getTime() + x,this.server);
-		this.server.setServedEvent(Event);
+		this.server.setServedEventLastTime(this.getTime() + x);
 		return Event;
 	}
 
@@ -25,4 +25,8 @@ public class ServedTorniquetEspecialEvent extends Event{
 		// TODO Auto-generated method stub
 
 	}
+	
+    public String toString() {
+        return String.format("%.3f", this.getTime()) + ' ' + this.getFanID() + " ServedTorniquetEspecial by: " + this.server.getServerID(); 
+    }
 }

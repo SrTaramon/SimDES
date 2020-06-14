@@ -16,12 +16,10 @@ public class WaitQueueTorniquetEvent extends Event {
 		if (this.server.isBeenServed(this.getFan())) {
 			
 			ServedTorniquetEvent Event = new ServedTorniquetEvent(this.getFan(), this.server.getDoneTime(),this.server);
-			this.server.setServedEvent(Event);
 			return Event;
 		} else {
 			
 			WaitQueueTorniquetEvent Event = new WaitQueueTorniquetEvent(this.getFan(), this.server.getDoneTime(), server);
-    		this.server.setWaitEvent(Event);
     		return Event;
 		}
 	}
@@ -31,5 +29,9 @@ public class WaitQueueTorniquetEvent extends Event {
 		// TODO Auto-generated method stub
 
 	}
+	
+    public String toString() {
+        return String.format("%.3f", this.getTime()) + ' ' + this.getFanID() + " Waits Queue to ServedTorniquet by: " + this.server.getServerID();
+    }
 
 }

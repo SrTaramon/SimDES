@@ -12,12 +12,6 @@ public class DoneValidarTicketEspecialEvent extends Event {
 
 	public Event getNextEvent(ServerTorniquet[] servers, Random gen, ServerTorniquetEspecial[] especial_servers, ServerValidarTicket[] serversValidar, ServerValidarTicketEspecial[] serversValidarEspecial) {
 		this.server.flushDoneEvent();
-		//return createArribadaVestibolEntrada();
-		return createArrivalVestibolSortida();
-	}
-
-	private ArrivalVestibolSortida createArrivalVestibolSortida() {
-		// TODO Auto-generated method stub
 		return new ArrivalVestibolSortida(this.getFan(), this.getTime());
 	}
 
@@ -25,4 +19,8 @@ public class DoneValidarTicketEspecialEvent extends Event {
 		// TODO Auto-generated method stub
 		
 	}
+	
+    public String toString() {
+        return String.format("%.3f", this.getTime()) + ' ' + this.getFanID() + " Done ValidarTicketEspecial by: " + this.server.getServerID(); 
+    }
 }

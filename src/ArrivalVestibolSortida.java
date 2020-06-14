@@ -42,14 +42,14 @@ public class ArrivalVestibolSortida extends Event {
         		
         		//No Hi ha ningu a la cua 
         		ServedTorniquetEspecialEvent Event = createServedTorniquetEspecialEvent(freeEspecialServer);
-        		freeEspecialServer.setServedEvent(Event);
+        		freeEspecialServer.addWaitEvent(Event);
         		return Event;
         		
         	} else {
         		
         		//Si Hi ha algu a la cua i es te que esperar a que s'acabi.
         		WaitQueueTorniquetEspecialEvent Event = createWaitQueueTorniquetEspecialEvent(freeEspecialServer);
-        		freeEspecialServer.setWaitEvent(Event);
+        		freeEspecialServer.addWaitEvent(Event);
         		return Event;
         		
         	}
@@ -61,7 +61,7 @@ public class ArrivalVestibolSortida extends Event {
         		
         		//No Hi ha ningu a la cua 
         		ServedTorniquetEvent Event = createServedTorniquetEvent(freeServer);
-        		freeServer.setServedEvent(Event);
+        		freeServer.addWaitEvent(Event);
         		return Event;
         		
         		
@@ -69,7 +69,7 @@ public class ArrivalVestibolSortida extends Event {
         		
         		//Si Hi ha algu a la cua i es te que esperar a que s'acabi.
         		WaitQueueTorniquetEvent Event = createWaitQueueTorniquetEvent(freeServer);
-        		freeServer.setWaitEvent(Event);
+        		freeServer.addWaitEvent(Event);
         		return Event;
         		
         	}
@@ -120,37 +120,44 @@ public class ArrivalVestibolSortida extends Event {
      */
     
     public ServerTorniquetEspecial getFreeEspecialServer(ServerTorniquetEspecial[] servers) {
-    	// Encara s'ha de fer
-		return null;
+    	
+    	int minimSizeCua = 9999;
+    	ServerTorniquetEspecial choiceServer = null;
+        for (int i = 0; i < servers.length; i++) {
+        	ServerTorniquetEspecial newServer = servers[i];
+            if (newServer.isAvailable()) {
+                return newServer;
+            } else if (newServer.getCuaSize() < minimSizeCua) {
+            	minimSizeCua = newServer.getCuaSize();
+                choiceServer = newServer;
+            }
+        }
+	    return choiceServer;
     	
     }
     
     
     public ServerTorniquet getFreeServer(ServerTorniquet[] servers) {
     	// MOdificar funcio per mirar uina de les cues pot anar. El server mirara si es vip o no.
-        boolean hasFoundSlots = false;
+        int minimSizeCua = 9999;
         ServerTorniquet choiceServer = null;
         for (int i = 0; i < servers.length; i++) {
         	ServerTorniquet newServer = servers[i];
-            if (newServer.canTakeServedEvent()) {
+            if (newServer.isAvailable()) {
                 return newServer;
-            } else if (newServer.canTakeWaitEvent() && !hasFoundSlots) {
+            } else if (newServer.getCuaSize() < minimSizeCua) {
+            	minimSizeCua = newServer.getCuaSize();
                 choiceServer = newServer;
-                hasFoundSlots = true;
             }
         }
-        if (hasFoundSlots == false) {
-            return null;
-        } else {
-            return choiceServer;
-        }
+	    return choiceServer;
     }
 
     /**
      * Formats the ArrivalEvent to print out its profile.
      */
     public String toString() {
-        return String.format("%.3f", this.getTime()) + ' ' + this.getFanID() + " arrives";
+        return String.format("%.3f", this.getTime()) + ' ' + this.getFanID() + " arrives to Vestibol Sortida";
     }
 
 }

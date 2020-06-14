@@ -18,7 +18,7 @@ public class ServedValidarTicketEspecialEvent extends Event {
 		//Aqui es suma un temps fixe.
 		
 		DoneValidarTicketEspecialEvent Event = new DoneValidarTicketEspecialEvent(this.getFan(), this.getTime() + x,this.server);
-		this.server.setServedEvent(Event);
+		this.server.setServedEventLastTime(this.getTime() + x);
 		return Event;
 	}
 
@@ -27,5 +27,9 @@ public class ServedValidarTicketEspecialEvent extends Event {
 		// TODO Auto-generated method stub
 		
 	}
+	
+    public String toString() {
+        return String.format("%.3f", this.getTime()) + ' ' + this.getFanID() + " ServedValidarTicketEspecial by: " + this.server.getServerID(); 
+    }
 
 }

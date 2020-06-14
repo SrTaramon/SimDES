@@ -20,5 +20,9 @@ public class ComprarTiquetEvent extends Event {
 		// TODO Auto-generated method stub
 
 	}
+	
+    public String toString() {
+        return String.format("%.3f", this.getTime()) + ' ' + this.getFanID() + " Compra Tiquet: ";
+    }
 
 }

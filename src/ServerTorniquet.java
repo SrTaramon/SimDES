@@ -1,3 +1,5 @@
+import java.util.Queue;
+
 class ServerTorniquet {
     /**
      * Counter integer that generates ServerID in a non-repetitive way.
@@ -7,16 +9,10 @@ class ServerTorniquet {
      * CustomerID  that allows distinguishing between 2 servers.
      */
     private int serverID;
+    
+    private double lastServerTime = 0;
 
-    /**
-     * the first event being resolved by the server.
-     */
-    private Event served = null;
-
-    /**
-     * the second event being resolved by the server.
-     */
-    private Event wait = null;
+    private Queue<Event> Cua = null;
 
     /**
      * Creates a server.
@@ -36,35 +32,16 @@ class ServerTorniquet {
      * @param newEvent the status of the customer being served
      * in the form of an event.
      */
-    public void setServedEvent(Event newEvent) {
-        this.served = newEvent;
-    }
-
-    /**
-     * Causes the second slot inside the Server to be occupied.
-     * Or updates the service status of the customer in the second slot.
-     * @param newEvent the status of the customer being served
-     * in the form of an event.
-     */
-    public void setWaitEvent(Event newEvent) {
-        this.wait = newEvent;
+    public void setServedEventLastTime(double lastserverime) {
+        this.lastServerTime = lastserverime;
     }
 
     /**
      * Checks whether the first slot inside the Server has been taken.
      * @return true if first slot has not been taken, false otherwise.
      */
-    public boolean canTakeServedEvent() {
-        return (served == null && wait == null);
-    }
-
-    /**
-     * Checks whether the second slot inside the Server has been taken.
-     * @return true if the second slot has not been and the first slot is taken,
-     * false otherwise.
-     */
-    public boolean canTakeWaitEvent() {
-        return (served != null && wait == null);
+    public int getCuaSize() {
+        return Cua.size();
     }
 
     /**
@@ -73,13 +50,7 @@ class ServerTorniquet {
      * and replace the 2nd slot with null status.
      */
     public void flushDoneEvent() {
-        if (served != null) {
-            served = null;
-        }
-        if (wait != null) {
-            served = wait;
-            wait = null;
-        }
+    	Cua.poll();
     }
 
     /**
@@ -87,6 +58,25 @@ class ServerTorniquet {
      * @return earliest possible time at which waiting customer can be served
      */
     public double getDoneTime() {
-        return this.served.getTime();
+        return this.lastServerTime;
     }
+
+	public void addWaitEvent(Event event) {
+		// TODO Auto-generated method stub
+		Cua.add(event);
+		
+	}
+
+	public boolean isAvailable() {
+		// TODO Auto-generated method stub
+		return (Cua.size() == 0);
+	}
+
+	public boolean isBeenServed(Fan fan) {
+		// TODO Auto-generated method stub
+		if (Cua.peek().getFanID() == fan.getFanID()) {
+			return true;
+		}
+		return false;
+	}
 }

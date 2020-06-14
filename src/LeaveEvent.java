@@ -17,5 +17,9 @@ public class LeaveEvent extends Event {
 		// TODO Auto-generated method stub
 
 	}
+	
+    public String toString() {
+        return String.format("%.3f", this.getTime()) + ' ' + this.getFanID() + " Leave"; 
+    }
 
 }

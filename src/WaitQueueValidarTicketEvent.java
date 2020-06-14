@@ -15,12 +15,10 @@ public class WaitQueueValidarTicketEvent extends Event {
 		if (this.server.isBeenServed(this.getFan())) {
 			
 			ServedValidarTicketEvent Event = new ServedValidarTicketEvent(this.getFan(), this.server.getDoneTime(),this.server);
-			this.server.setServedEvent(Event);
 			return Event;
 		} else {
 			
 			WaitQueueValidarTicketEvent Event = new WaitQueueValidarTicketEvent(this.getFan(), this.server.getDoneTime(), server);
-    		this.server.setWaitEvent(Event);
     		return Event;
 		}
 	}
@@ -30,4 +28,8 @@ public class WaitQueueValidarTicketEvent extends Event {
 		// TODO Auto-generated method stub
 
 	}
+	
+    public String toString() {
+        return String.format("%.3f", this.getTime()) + ' ' + this.getFanID() + " Waits Queue to ServedValidarTicketl by: " + this.server.getServerID(); 
+    }
 }
