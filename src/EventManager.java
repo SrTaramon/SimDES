@@ -80,11 +80,11 @@ public class EventManager {
         }
         this.serversValidar = new ServerValidarTicket [numServersValidar];
         for (int i = 0;i < numServersValidar;i++) {
-            this.special_servers[i] = new ServerTorniquetEspecial();
+            this.serversValidar[i] = new ServerValidarTicket();
         }
         this.serversValidarEspecial = new ServerValidarTicketEspecial [numEspecailServersValidar];
         for (int i = 0;i < numEspecailServersValidar;i++) {
-            this.special_servers[i] = new ServerTorniquetEspecial();
+            this.serversValidarEspecial[i] = new ServerValidarTicketEspecial();
         }
     }
 
