@@ -1,3 +1,4 @@
+import java.util.LinkedList;
 import java.util.Queue;
 
 class ServerValidarTicketEspecial {
@@ -12,7 +13,7 @@ class ServerValidarTicketEspecial {
 
     private double lastServerTime = 0;
 
-    private Queue<Event> Cua = null;
+    private Queue<Event> Cua = new LinkedList<Event>();
 
     /**
      * Creates a server.

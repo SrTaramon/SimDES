@@ -10,8 +10,9 @@ public class PartitEvent extends Event {
 	@Override
 	public Event getNextEvent(ServerTorniquet[] servers, Random gen, ServerTorniquetEspecial[] especial_servers, ServerValidarTicket[] serversValidar, ServerValidarTicketEspecial[] serversValidarEspecial) {
 		// TODO Auto-generated method stub
-		int x = gen.nextInt(30) + 120;
-		this.getFan().setHaVistPartit(true);
+		int x = gen.nextInt(1800) + 7200;
+		//System.out.println(this.getFan().getFanID() + " SetHasVistPartit");
+		this.setFanHaVistPartit();
 		return new ArribadaVestibolEntrada(this.getFan(), this.getTime() + x);
 	}
 

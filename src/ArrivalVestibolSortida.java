@@ -30,7 +30,6 @@ public class ArrivalVestibolSortida extends Event {
      */
     public Event getNextEvent(ServerTorniquet[] servers, Random gen, ServerTorniquetEspecial[] especial_servers, ServerValidarTicket[] serversValidar, ServerValidarTicketEspecial[] serversValidarEspecial) {
     	
-        
         if (this.getFan().isHaVistPartit()) { //COndicio perque el fan sorti del sistema
         	return createLeaveEvent();
         	
@@ -60,6 +59,7 @@ public class ArrivalVestibolSortida extends Event {
         	if (freeServer.isAvailable()) {
         		
         		//No Hi ha ningu a la cua 
+            	
         		ServedTorniquetEvent Event = createServedTorniquetEvent(freeServer);
         		freeServer.addWaitEvent(Event);
         		return Event;

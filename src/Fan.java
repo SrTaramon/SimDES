@@ -13,17 +13,17 @@ public class Fan {
     /**
      * CustomerID  that allows distinguishing between 2 customers.
      */
-    private static boolean Billet;
+    private boolean Billet = false;
     
     /**
      * CustomerID  that allows distinguishing between 2 customers.
      */
-    private static boolean HaVistPartit;
+    private boolean HaVistPartit = false;
     
     /**
      * CustomerID  that allows distinguishing between 2 customers.
      */
-    private static boolean Especial;
+    private boolean Especial = false;
 
     /**
      * Time when the customer first arrives.
@@ -38,7 +38,11 @@ public class Fan {
     public Fan(double time) {
 		this.fanID = counter;
         this.time = time;
+        HaVistPartit = false;
+        Especial = false;
+        Billet = false;
         counter++;
+        
     }
 
     public int getFanID() {
@@ -58,6 +62,7 @@ public class Fan {
 	}
 
 	public boolean isHaVistPartit() {
+		//System.out.println(this.fanID + " " + HaVistPartit);
 		return HaVistPartit;
 	}
 

@@ -15,7 +15,8 @@ public class ServedTorniquetEspecialEvent extends Event{
 	public Event getNextEvent(ServerTorniquet[] servers, Random gen, ServerTorniquetEspecial[] especial_servers, ServerValidarTicket[] serversValidar, ServerValidarTicketEspecial[] serversValidarEspecial) {
 		
 		// En aquest cas al ser un esecial tardarà una mica mes de lo normal.
-		double x = (double) (gen.nextInt(1));
+
+		double x = (double) (gen.nextInt(6) + 6);
 		DoneTorniquetEspecialEvent Event = new DoneTorniquetEspecialEvent(this.getFan(), this.getTime() + x,this.server);
 		this.server.setServedEventLastTime(this.getTime() + x);
 		return Event;

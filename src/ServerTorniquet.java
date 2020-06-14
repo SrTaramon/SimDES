@@ -1,3 +1,4 @@
+import java.util.LinkedList;
 import java.util.Queue;
 
 class ServerTorniquet {
@@ -12,7 +13,7 @@ class ServerTorniquet {
     
     private double lastServerTime = 0;
 
-    private Queue<Event> Cua = null;
+    private Queue<Event> Cua = new LinkedList<Event>();
 
     /**
      * Creates a server.
@@ -69,7 +70,10 @@ class ServerTorniquet {
 
 	public boolean isAvailable() {
 		// TODO Auto-generated method stub
-		return (Cua.size() == 0);
+		if (Cua.isEmpty()) {
+			return true; 
+		} else return false;
+		//return Cua.isEmpty();
 	}
 
 	public boolean isBeenServed(Fan fan) {

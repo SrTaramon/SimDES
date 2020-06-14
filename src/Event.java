@@ -45,4 +45,8 @@ public abstract class Event {
     public double getTime() {
         return this.time;
     }
+    
+    public void setFanHaVistPartit() {
+    	this.fan.setHaVistPartit(true);
+    }
 }
