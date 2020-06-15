@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Fan {
 
     /**
@@ -39,8 +41,9 @@ public class Fan {
 		this.fanID = counter;
         this.time = time;
         HaVistPartit = false;
-        Especial = false;
-        Billet = false;
+        Random rn = new Random();
+        Especial = rn.nextBoolean();
+        Billet = rn.nextBoolean();
         counter++;
         
     }
